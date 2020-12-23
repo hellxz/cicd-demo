@@ -1,0 +1,45 @@
+#部署单元
+apiVersion: apps/v1   #api版本
+kind: Deployment      #对象类型
+metadata:             #元信息标识
+  name: cicd-demo
+  namespace: default
+  labels:             #自定义Deployment绑定的标签
+    app: cicd-demo
+spec:                 #期待运行状态
+  replicas: 1         #部署实例数
+  selector:
+    app: cicd-demo
+  template:           #pod
+    metadata:
+      labels:         #与spec.selector.matchLabels相同
+        app: cicd-demo
+    spec:             #pod容器期望的状态
+      containers:
+        - name: cicd-demo
+          image: {{IMAGE_NAME}}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JVM_OPTS
+              value: "-Xms128m -Xmx256m"
+          ports:
+            - containerPort: 8080
+
+---
+#svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicd-demo-svc
+  namespace: default
+  labels:
+    service: cicd-demo-svc
+spec:
+  selector:            #匹配pod标签
+    app: cicd-demo
+  type: NodePort     #svc类型，ExternalName, ClusterIP, NodePort, and LoadBalancer
+  ports:
+    - name: cicd-demo-port
+      protocol: TCP
+      port: 8080
+      nodePort: 30000
