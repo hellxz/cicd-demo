@@ -14,10 +14,9 @@ pipeline{
     stages {
         stage('Pull Source') {
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-                         doGenerateSubmoduleConfigurations: false,
-                         extensions: [[$class: 'CloneOption', noTags: true, reference: '', shallow: true]], //相当于git clone -depth 1 xxx.git
-                         submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/hellxz/cicd-demo.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+                          doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CleanCheckout']], submoduleCfg: [], 
+                          userRemoteConfigs: [[url: 'https://github.com/hellxz/cicd-demo.git']]])
             }
         }
         stage('Build Artifact') {
