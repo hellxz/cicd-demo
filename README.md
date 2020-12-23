@@ -13,3 +13,10 @@
 - #2、Jenkins构建运行期拉取本仓库源码，使用Maven命令构建制品
 - #3、调用Shell脚本将制品制成 Docker Image，并推送私有仓库
 - #4、远程部署镜像到 Kubernetes 集群中
+
+## 如何使用？
+1. fork本仓库
+2. 在主分支上修改以下两个Shell脚本的常量部分，与实际环境对应上即可。
+    - artifact2image.sh
+    - deploy2k8s.sh
+3. 如果不想改主分支，则创建新分支，在Jenkins选Jenkinsfile来源时使用该分支即可
