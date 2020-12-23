@@ -9,7 +9,8 @@ metadata:             #元信息标识
 spec:                 #期待运行状态
   replicas: 1         #部署实例数
   selector:
-    app: cicd-demo
+    matchLabels:
+      app: cicd-demo
   template:           #pod
     metadata:
       labels:         #与spec.selector.matchLabels相同
