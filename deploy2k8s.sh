@@ -5,8 +5,8 @@ set -eu
 
 #定义常量
 PROJECT_NAME="cicd-demo"
-UPLOAD_DIR="/home/hellxz/apps"
-FILE_NAME="${UPLOAD_DIR}/${PROJECT_NAME}/deploy.yaml"
+UPLOAD_DIR="/home/hellxz/apps/${PROJECT_NAME}"
+FILE_NAME="${UPLOAD_DIR}/deploy.yaml"
 SSH_USER="hellxz"
 SSH_IP="192.168.87.129"
 
