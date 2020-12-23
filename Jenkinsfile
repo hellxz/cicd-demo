@@ -5,9 +5,6 @@ pipeline{
         disableConcurrentBuilds()  //禁用Jenkins同时执行多次该pipeline
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '5', numToKeepStr: '10') //丢弃旧的构建策略
     }
-    parameters {
-        choice choices: ['master'], description: '分支', name: 'BRANCH'
-    }
     environment {
         KUBE_MASTER="192.168.87.129"
         USER="hellxz"
