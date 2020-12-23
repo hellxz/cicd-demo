@@ -1,4 +1,3 @@
-#部署单元
 apiVersion: apps/v1   #api版本
 kind: Deployment      #对象类型
 metadata:             #元信息标识
@@ -27,7 +26,6 @@ spec:                 #期待运行状态
             - containerPort: 8080
 
 ---
-#svc
 apiVersion: v1
 kind: Service
 metadata:
